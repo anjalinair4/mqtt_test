@@ -116,7 +116,7 @@ void loop() {
     if(Serial.available()>0){
         Serial.readString().toCharArray(msg,50);
         client.publish(mac,msg);
-        Serial.print("Publish message: ");
+        Serial.print("Publish message: msg ");
         Serial.println(msg);
        
 
