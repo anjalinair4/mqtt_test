@@ -48,12 +48,10 @@ void setup_wifi() {
   Serial.println(ssid);
 
   WiFi.begin(essid);
-
+  
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print(".");
   }
-
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
@@ -88,6 +86,8 @@ void reconnect() {
     if (client.connect("ESP8266Client")) {
       
      Serial.println("connected");
+     WiFi.status(0);
+     Serial.print(WiFi.status());
      ("location/" + WiFi.macAddress()).toCharArray(mac,27);
 
      Serial.print("mac address=");
