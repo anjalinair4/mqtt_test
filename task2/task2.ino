@@ -1,8 +1,6 @@
 
 #include<EEPROM.h>
 #include <ESP8266WiFi.h>
-//#include <SPI.h>
-//#include <WiFi.h>
 
 const int Pin = 2;
 void setup() {
@@ -10,8 +8,6 @@ int i;
 char ssid[20],pass[20];
 pinMode(Pin, INPUT);
 EEPROM.begin(9600);
-
-WiFiServer Server(80);
 
 if(Pin==LOW)
 {
@@ -27,6 +23,7 @@ if(Pin==LOW)
 }
 else 
 {
+ WiFiServer Server(80);
  Server.begin();
  Server.print("hello world"); 
  WiFiClient Client=Server.available();
@@ -38,11 +35,14 @@ while(!Client.available())
 {
   delay(1);
 }
+String req = Client.readStringUntil('\r');
+  Serial.println(req);
+  Client.flush();
+
 }
+
+
 }
-
-
-
 void loop() {
   // put your main code here, to run repeatedly:
 
