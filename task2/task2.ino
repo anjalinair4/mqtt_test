@@ -39,6 +39,15 @@ String req = Client.readStringUntil('\r');
   Serial.println(req);
   Client.flush();
 
+if (req.indexOf("ssid")!=-1)
+  {
+    //do something
+  }
+if (req.indexOf("pass")!=-1)
+{
+  //do something
+}
+
 }
 
 
